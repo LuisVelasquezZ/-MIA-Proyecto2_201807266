@@ -1,0 +1,54 @@
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">GT SALES</a>
+    <form class="form-inline">
+        <button class="btn btn-outline-info mr-sm-2">Iniciar Sesion</button>
+        <button class="btn btn-outline-warning mr-sm-2" routerLink="/registro">Registrarme</button>
+    </form>
+</nav>
+
+<div>
+    <!-- Page Content goes here -->
+    <div class="row" style="height: 50px;">
+
+    </div>
+    <div class="col-md-4 offset-md-4">
+
+        <div class="card mb-3">
+            <div class="row no-gutters">
+                <div class="container-fluid">
+                    <div class="card bg-dark text-light text-center">
+                        <img src="./../../../../assets/cart.jpg" class="card-img-top" alt="Responsive image">
+                        <div class="card-img-overlay">
+                            <h2 class="card-tittle">Iniciar Sesión</h2>
+                        </div>
+                    </div>
+                </div>
+                
+
+                <div class="card-body">
+                    <form [formGroup]="loginForm" (ngSubmit)="autenticar()">
+                        <div class="form-group">
+
+                            <label for="nombre"></label>
+                            <input type="email" class="form-control" id="correo" placeholder="Correo"
+                                formControlName="correo">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="pass" placeholder="Contraseña"
+                                formControlName="pass">
+                        </div>
+                        <div class="row justify-content-md-center">
+                            <button type="submit" class="btn btn-outline-secondary ">Iniciar
+                                <i class="material-icons right">lock_open</i>
+                            </button>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>

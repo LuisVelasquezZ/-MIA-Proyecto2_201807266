@@ -1,0 +1,69 @@
+
+<nav class="navbar navbar-dark bg-dark">
+    <a class="navbar-brand" href="#">GT SALES</a>
+    <form class="form-inline">
+        <button class="btn btn-outline-info mr-sm-2" routerLink="/login">Iniciar Sesion</button>
+        <button class="btn btn-outline-warning mr-sm-2">Registrarme</button>
+    </form>
+</nav>
+
+
+<div style="background-image: url('./../../../../assets/resources/wpn2.jpg'); background-size: cover;">
+    <!-- Page Content goes here -->
+    <div class="row" style="height: 50px;">
+
+        </div>
+    <div class="row" style="height: 550px;">
+        <div class="col-md-4 offset-md-4">
+            <div class="card mb-3">
+                <div class="row no-gutters">
+                    <div class="col-md-12">
+                        <div class="card-body">
+                            <form [formGroup]="registroForm" (ngSubmit)="agregarUsuario()">
+                                <div class="form-group">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" class="form-control" id="nombre" placeholder="Nombre"
+                                        formControlName="nombre">
+                                </div>
+                                <div class="form-group">
+                                    <label for="apellido">Apellido</label>
+                                    <input type="text" class="form-control" id="apellido" placeholder="apellido"
+                                        formControlName="apellido">
+                                </div>
+                                <div class="form-group">
+                                    <label for="correo">Correo</label>
+                                    <input type="email" class="form-control" id="correo" placeholder="Enter email"
+                                        formControlName="correo">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pass">Contraseña</label>
+                                    <input type="password" class="form-control" id="pass" placeholder="Password"
+                                        formControlName="pass">
+                                </div>
+                                <div class="form-group">
+                                    <label for="pais">Pais</label>
+                                    <select class="form-control" id="pais" formControlName="pais">
+                                      <option *ngFor=" let p of paises" value="{{p.name}}">{{p.name}}</option>
+                                    </select>
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="foto">Foto</label>
+                                    <input type="file" class="form-control-file" id="foto" (change)="onFileChanged($event)" formControlName="foto">
+                                  </div>
+                                <div class="row justify-content-md-center">
+                                    <button type="submit" class="btn btn-outline-secondary">Registrarme
+                                            <i class="material-icons right">how_to_reg</i>
+                                    </button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</div>

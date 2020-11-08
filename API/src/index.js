@@ -4,7 +4,7 @@ const cors = require('cors');
 const app = express();
 
 //imports
-//const personRoutes = require('./routes/person-rotes');
+const usuarios = require('./routes/usuarios');
 
 //settings
 app.set('port', 3000);
@@ -15,7 +15,10 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 //routes
-//app.use(personRoutes);
+app.use(usuarios);
+
+app.use(express.static('src/img'));
+
 
 
 
