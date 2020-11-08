@@ -12,11 +12,14 @@ import { Md5 } from 'ts-md5';
 })
 export class RegistroComponent implements OnInit {
   registroForm: FormGroup;
-  selectedFile: File
-  paises:any[] = [];
-  usuario: any = {idUsuario: null, nombre: '', apellido: '', correo: '', pass: '', tipo: '', pais: '',foto:''}
-  constructor(private fb:FormBuilder, private usuarioService: UsuarioService, 
-    private router:Router, private paisService: PaisService) { }
+  selectedFile: File;
+  fileName: string = "image.jpg";
+  uniquefilename : String = "";
+  fecha : string  = "";
+  paises: any[] = [];
+  usuario: any = { idUsuario: null, nombre: '', apellido: '', correo: '', pass: '', tipo: '', pais: '', foto: '' }
+  constructor(private fb: FormBuilder, private usuarioService: UsuarioService,
+    private router: Router, private paisService: PaisService) { }
 
   ngOnInit(): void {
     this.getPaises();
@@ -30,31 +33,39 @@ export class RegistroComponent implements OnInit {
     });
   }
 
-  agregarUsuario(){
+  agregarUsuario() {
     const md5 = new Md5();
     const usuarioNuevo = {
       nombre: this.registroForm.get('nombre').value,
       apellido: this.registroForm.get('apellido').value,
       correo: this.registroForm.get('correo').value,
       pass: md5.appendStr(this.registroForm.get('pass').value).end(),
-      pais:this.registroForm.get('pais').value,
-      foto:this.selectedFile.name
+      pais: this.registroForm.get('pais').value,
+      foto:this.fecha.concat(this.fileName)
     }
-    console.log(usuarioNuevo);
-    /*this.usuarioService.crearUsuario(usuarioNuevo).then(() => {
+    this.usuarioService.crearUsuario(usuarioNuevo).then(() => {
+      if (this.fileName != "image.jpg") {
+        this.usuarioService.subirarchivo(this.selectedFile, this.fecha);
+      }
       this.router.navigate(['/login']);
-    });*/
+    });
   }
 
   private getPaises() {
-    this.paisService.getPaises().then((response:any) => {
-      this.paises = response.map((course) =>{
+    this.paisService.getPaises().then((response: any) => {
+      this.paises = response.map((course) => {
         return course;
       });
     });
   }
 
   onFileChanged(event) {
-    this.selectedFile = event.target.files[0]
+    this.selectedFile = event.target.files[0];
+    this.fileName = this.selectedFile.name;
+    let hora = Date.now();
+    this.fecha = hora.toString();
+    this.uniquefilename.concat(this.fecha,this.fileName) ;    
   }
+
+
 }

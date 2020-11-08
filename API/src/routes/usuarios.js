@@ -1,4 +1,7 @@
 const { Router } = require('express');
+const multer = require('multer');
+const fs = require('fs');
+const path = require('path');
 const router = Router();
 const BD = require('../config/db');
 
@@ -98,7 +101,7 @@ router.post('/agregarusuario', async (req, res) => {
 
 //UPDATE
 router.put("/actualizarusuario", async (req, res) => {
-    const { nombre, apellido, correo, pass, pais, fot,idusuario } = req.body;
+    const { nombre, apellido, correo, pass, pais, foto,idusuario } = req.body;
 
     sql = "update usuario set nombre=:nombre, apellido=:apellido, correo=:correo, pass=:pass, pais=:pais, foto=:foto where idusuario=:idusuario";
     await BD.Open(sql, [nombre, apellido, correo, pass, pais,foto, idusuario], true);
@@ -140,5 +143,20 @@ router.delete("/eliminarusuario/:idusuario", async (req, res) => {
     res.json({ "msg": "Usuario Eliminado" })
 })
 
+// Subir imagen
+
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, './src/img/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+})
+
+var upload = multer({ storage: storage });
+router.post('/foto', upload.single('photo'), function (req, res) {
+    res.end("File uploaded.");
+});
 
 module.exports = router;

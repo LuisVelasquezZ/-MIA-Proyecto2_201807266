@@ -43,4 +43,14 @@ export class UsuarioService {
   eliminarUsuario(idUsuario) {
     return this.request('DELETE', `${environment.serverUrl}/eliminarusuario/${idUsuario}`);
   }
+
+
+  subirarchivo(selectedFile, hora) {
+    const uploadData = new FormData();
+    //hora :Date;
+    uploadData.append('photo', selectedFile, hora+selectedFile.name);
+    this.http.post(`${environment.serverUrl}/foto`, uploadData).subscribe((response) => {
+      console.log(response); // handle event here
+    });
+  }
 }
