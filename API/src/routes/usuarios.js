@@ -46,13 +46,35 @@ router.post('/auth', async (req, res) => {
             "nombre": user[3],
             "apellido": user[4],
             "correo": user[5],
+            "pass":user[6],
+            "pais": user[7],
+            "foto": user[8]
+        }
+
+        Users.push(userSchema);
+    })
+    res.json(Users);
+})
+
+router.post('/recuperar', async (req, res) => {
+    const { correo } = req.body;
+    sql = "select * from usuario where correo = :correo ";
+    let result = await BD.Open(sql, [correo], false);
+    Users = [];
+    result.rows.map(user => {
+        let userSchema = {
+            "idusuario": user[0],
+            "tipo": user[1],
+            "confirmacion": user[2],
+            "nombre": user[3],
+            "apellido": user[4],
+            "correo": user[5],
             "pais": user[6],
             "foto": user[7]
         }
 
         Users.push(userSchema);
     })
-    console.log(Users);
     res.json(Users);
 })
 
@@ -72,8 +94,9 @@ router.get('/getusuario/:idusuario', async (req, res) => {
             "nombre": user[3],
             "apellido": user[4],
             "correo": user[5],
-            "pais": user[6],
-            "foto": user[7]
+            "pass": user[6],
+            "pais": user[7],
+            "foto": user[8]
         }
 
         Users.push(userSchema);
@@ -126,6 +149,19 @@ router.put("/confirmarusuario", async (req, res) => {
     await BD.Open(sql, [ idusuario], true);
 
     res.status(200).json({
+        "idusuario": idusuario
+    })
+
+})
+
+router.put("/passusuario", async (req, res) => {
+    const { pass, idusuario } = req.body;
+
+    sql = "update usuario set pass=:pass where idusuario=:idusuario";
+    await BD.Open(sql, [pass, idusuario], true);
+
+    res.status(200).json({
+        "pass": pass,
         "idusuario": idusuario
     })
 

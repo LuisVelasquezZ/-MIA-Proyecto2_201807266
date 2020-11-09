@@ -23,7 +23,21 @@ export class LoginService {
   }
 
   loginUsuario(usuario) {
-    console.log(usuario);
+    //console.log(usuario);
     return this.request('POST', `${environment.serverUrl}/auth`, usuario);
+  }
+
+  emailUsuario(usuario) {
+    //console.log(usuario);
+    return this.request('POST', `${environment.serverUrl}/email`, usuario);
+  }
+
+  recuperarUsuario(usuario) {
+    //console.log(usuario);
+    return this.request('POST', `${environment.serverUrl}/recuperar`, usuario);
+  }
+
+  passusuario(usuario){
+    return this.request('PUT', `${environment.serverUrl}/passusuario`, usuario);
   }
 }

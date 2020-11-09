@@ -1,25 +1,16 @@
 
-<nav class="navbar navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">GT SALES</a>
-    <form class="form-inline">
-        <button class="btn btn-outline-info mr-sm-2" routerLink="/login">Iniciar Sesion</button>
-        <button class="btn btn-outline-warning mr-sm-2">Registrarme</button>
-    </form>
-</nav>
-
-
 <div >
     <!-- Page Content goes here -->
-    <div class="row" style="height: 50px;">
-
+    <div class="row" >
+        <img src="{{rutaimg}}" class="rounded float-left img-thumbnail" alt="Responsive image">
         </div>
-    <div class="row" style="height: 550px;">
+    <div class="row" >
         <div class="col-md-4 offset-md-4">
             <div class="card mb-3">
                 <div class="row no-gutters">
                     <div class="col-md-12">
                         <div class="card-body">
-                            <form [formGroup]="registroForm" (ngSubmit)="agregarUsuario()">
+                            <form [formGroup]="perfilForm" (ngSubmit)="editarUsuario()">
                                 <div class="form-group">
                                     <label for="nombre">Nombre</label>
                                     <input type="text" class="form-control" id="nombre" placeholder="Nombre"
@@ -33,7 +24,7 @@
                                 <div class="form-group">
                                     <label for="correo">Correo</label>
                                     <input type="email" class="form-control" id="correo" placeholder="Enter email"
-                                        formControlName="correo">
+                                        formControlName="correo" readonly>
                                 </div>
                                 <div class="form-group">
                                     <label for="pass">Contraseña</label>
@@ -50,8 +41,13 @@
                                     <label for="foto">Foto</label>
                                     <input type="file" class="form-control-file" id="foto" (change)="onFileChanged($event)" formControlName="foto">
                                   </div>
+                                  <div class="form-group">
+                                    <label for="creditps">Creditos</label>
+                                    <input type="text" class="form-control" id="creaditos" placeholder="Creditos"
+                                        formControlName="creditos" readonly>
+                                </div>
                                 <div class="row justify-content-md-center">
-                                    <button type="submit" class="btn btn-outline-secondary">Registrarme
+                                    <button type="submit" class="btn btn-outline-secondary">Guardar
                                             <i class="material-icons right">how_to_reg</i>
                                     </button>
                                 </div>

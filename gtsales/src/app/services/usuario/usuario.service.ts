@@ -34,6 +34,7 @@ export class UsuarioService {
   }
 
   actualizarUsuario(usuario) {
+    console.log(usuario);
     return this.request('PUT', `${environment.serverUrl}/actualizarusuario`, usuario);
   }
 

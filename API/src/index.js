@@ -5,7 +5,7 @@ const app = express();
 
 //imports
 const usuarios = require('./routes/usuarios');
-
+const email = require('./routes/email');
 //settings
 app.set('port', 3000);
 
@@ -16,6 +16,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 //routes
 app.use(usuarios);
+app.use(email);
 
 app.use(express.static('src/img'));
 

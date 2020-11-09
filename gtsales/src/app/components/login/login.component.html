@@ -11,9 +11,9 @@
     <div class="row" style="height: 50px;">
 
     </div>
-    <div class="col-md-4 offset-md-4">
+    <div class="col-md-4 offset-md-4 ">
 
-        <div class="card mb-3">
+        <div class="card mb-3 bg-secondary ">
             <div class="row no-gutters">
                 <div class="container-fluid">
                     <div class="card bg-dark text-light text-center">
@@ -38,7 +38,7 @@
                                 formControlName="pass">
                         </div>
                         <div class="row justify-content-md-center">
-                            <button type="submit" class="btn btn-outline-secondary ">Iniciar
+                            <button type="submit" class="btn btn-primary ">Iniciar
                                 <i class="material-icons right">lock_open</i>
                             </button>
 
@@ -48,6 +48,19 @@
 
             </div>
         </div>
+        <form [formGroup]="recuperarForm" (ngSubmit)="recuperar()">
+            <div class="form-group">
+
+                <label for="nombre">Olividé mi Contraseña</label>
+                <input type="email" class="form-control" id="correor" placeholder="Correo"
+                    formControlName="correor">
+            </div>
+            <div class="row justify-content-md-center">
+                <button type="submit" class="btn btn-outline-success">Recuperar
+                </button>
+
+            </div>
+        </form>
     </div>
 
 
