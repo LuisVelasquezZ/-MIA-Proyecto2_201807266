@@ -12,7 +12,7 @@ router.post('/email', async (req, res) => {
         ssl: true
     });
     cliente.send({
-        text: 'ingrese en la ruta: ' + req.body.texto,
+        text: req.body.texto,
         from: "fervzacarias@gmail.com",
         to: req.body.para,
         subject: "GT Sales"

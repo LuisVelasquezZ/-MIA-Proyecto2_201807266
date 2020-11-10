@@ -96,12 +96,12 @@ router.get('/getusuario/:idusuario', async (req, res) => {
             "correo": user[5],
             "pass": user[6],
             "pais": user[7],
-            "foto": user[8]
+            "foto": user[8],
+            "creditos":user[9]
         }
 
         Users.push(userSchema);
     })
-
     res.json(Users);
 })
 //CREATE
@@ -162,6 +162,36 @@ router.put("/passusuario", async (req, res) => {
 
     res.status(200).json({
         "pass": pass,
+        "idusuario": idusuario
+    })
+
+})
+
+
+router.put("/pagousuario", async (req, res) => {
+    const { creditos, idusuario } = req.body;
+
+    sql = "update usuario set creditos=(:creditos + (select creditos from usuario where idusuario=:idusuario))\
+     where idusuario=:idusuario";
+    await BD.Open(sql, [creditos, idusuario,idusuario], true);
+
+    res.status(200).json({
+        "creditos": creditos,
+        "idusuario": idusuario
+    })
+
+})
+
+router.put("/cobrousuario", async (req, res) => {
+    const { creditos, idusuario } = req.body;
+
+    sql = "update usuario set creditos=(select creditos from usuario where idusuario=:idusuario)- :creditos \
+     where idusuario=:idusuario";
+     console.log(sql)
+    await BD.Open(sql, [idusuario, creditos,idusuario], true);
+
+    res.status(200).json({
+        "pass": creditos,
         "idusuario": idusuario
     })
 

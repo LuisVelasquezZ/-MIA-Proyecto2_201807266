@@ -25,9 +25,14 @@ CREATE TABLE Producto(
     detalle VARCHAR2(200),
     palabras VARCHAR2(200),
     precio DECIMAL(7,2),
-     idusuario INTEGER REFERENCES Usuario(idusuario),
-    idcategoria INTEGER REFERENCES Categoria(idcategoria)
+    idusuario INTEGER REFERENCES Usuario(idusuario),
+    idcategoria INTEGER REFERENCES Categoria(idcategoria),
+    estado VARCHAR(10) DEFAULT 'publicada',
+    fotoproducto VARCHAR(100) 
 );
+
+ALTER TABLE Producto ADD estado VARCHAR(10) DEFAULT 'publicada';
+ALTER TABLE Producto ADD fotoproducto VARCHAR(100);
 
 CREATE TABLE Bitacora(
     idBitacora INTEGER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
@@ -49,8 +54,11 @@ CREATE TABLE Denuncia(
     contenido VARCHAR2(250),
     estado VARCHAR2(10) DEFAULT 'revisar' ,
     idusuario INTEGER REFERENCES Usuario(idusuario),
-    idproducto INTEGER REFERENCES Producto(idproducto)
+    idproducto INTEGER REFERENCES Producto(idproducto),
+    fecha DATE DEFAULT SYSDATE
 );
+
+ALTER TABLE Denuncia ADD fecha  DATE DEFAULT SYSDATE;
 
 
 CREATE TABLE Carrito(
@@ -81,3 +89,5 @@ VALUES('admin','si','administrador','administrador','fervzacarias@gmail.com','21
 
 
 COMMIT
+
+select * from producto

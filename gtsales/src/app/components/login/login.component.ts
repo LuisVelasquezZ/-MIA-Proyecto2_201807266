@@ -44,12 +44,14 @@ export class LoginComponent implements OnInit {
         if (this.usuario.tipo == "admin") {
           localStorage.setItem("usuario", JSON.stringify(this.usuario));
           console.log("admin");
-          //this.router.navigate(['/administrador']);
+          this.router.navigate(['/administrador']);
         } else if (this.usuario.tipo == "user") {
           localStorage.setItem("usuario", JSON.stringify(this.usuario));
           console.log("user")
           this.router.navigate(['/usuarios']);
         }
+      }else {
+        alert('usuario incorrecto');
       }
     });
 
@@ -68,7 +70,7 @@ export class LoginComponent implements OnInit {
         this.usuario = this.usuarios[0]; 
         const email = {
           para: this.usuario.correo,
-          texto: 'http://localhost:4200/recuperar/'+this.usuario.idusuario + ' para recuperar su cuenta'
+          texto: 'http://localhost:4200/recuperar/'+this.usuario.idusuario + ' para recuperar su cuenta ingrese a la ruta'
         }       
         this.loginService.emailUsuario(email).then(()=>{
           this.router.navigate(['/login']);

@@ -6,6 +6,11 @@ const app = express();
 //imports
 const usuarios = require('./routes/usuarios');
 const email = require('./routes/email');
+const categorias = require('./routes/categorias');
+const productos = require('./routes/productos');
+const carrito = require('./routes/carrito');
+const comentarios = require('./routes/comentarios');
+
 //settings
 app.set('port', 3000);
 
@@ -17,6 +22,10 @@ app.use(cors());
 //routes
 app.use(usuarios);
 app.use(email);
+app.use(categorias);
+app.use(productos);
+app.use(carrito);
+app.use(comentarios);
 
 app.use(express.static('src/img'));
 

@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AdministradorComponent } from './components/administrador/administrador.component';
+import { Adminsitrador_routes } from './components/administrador/administrador.route';
 import { LoginComponent } from './components/login/login.component';
 import { RecuperarComponent } from './components/login/recuperar/recuperar.component';
 import { RegistroComponent } from './components/registro/registro.component';
@@ -15,6 +17,11 @@ const routes: Routes = [
     component: UsuariosComponent,
     children: Usuario_routes
   },
+  {
+    path: 'administrador',
+    component: AdministradorComponent,
+    children: Adminsitrador_routes
+  }
   
 ];
 

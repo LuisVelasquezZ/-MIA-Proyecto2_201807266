@@ -1,0 +1,62 @@
+<h1 class="display-4  font-weight-bold">Mis Productos</h1>
+<div class="container">
+    <hr class="my-4">
+    <div class="row">
+      <div class="col-8">
+        <form [formGroup]="productoForm" (ngSubmit)="agregarProducto()">
+          <div class="form-group">
+            <label for="nombre">Nombre</label>
+            <input type="text" class="form-control" id="nombre" placeholder="Nombre" formControlName="nombre">
+          </div>
+          <div class="form-group">
+            <label for="detalle">Detalle</label>
+            <textarea class="form-control" id="deetalle" rows="3" formControlName="detalle"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="palabras">Tags</label>
+            <input type="text" class="form-control" id="palabras" placeholder="Tags" formControlName="palabras">
+          </div>
+          <div class="form-group">
+            <label for="precio">Precio</label>
+            <input type="text" class="form-control" id="precio" placeholder="Precio" formControlName="precio">
+          </div>
+          <div class="form-group">
+            <label for="idcategoria">Categorias</label>
+            <select class="form-control" id="idcategoria" formControlName="idcategoria">
+              <option *ngFor=" let p of categorias" value="{{p.idcategoria}}">{{p.nombrecategoria}}</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="foto">Foto</label>
+            <input type="file" class="form-control-file" id="foto" (change)="onFileChanged($event)" formControlName="foto">
+          </div>
+          <div class="row justify-content-md-center">
+            <button type="submit" class="btn btn-outline-secondary">Guardar
+              <i class="material-icons right">how_to_reg</i>
+            </button>
+          </div>
+        </form>
+      </div>
+    
+    </div>
+</div>
+<div class="card-columns">
+
+    <div class="card bg-light "  *ngFor="let prod of productos">
+        <img src="http://localhost:3000/{{prod.fotoproducto}}" class="card-img-top img-fluid" alt="...">
+        <blockquote class="blockquote mb-0 card-body">
+            <div class="card-body">
+                <h5 class="card-title">{{prod.nombreproducto}} </h5>
+                <p>{{prod.detalle}} </p>
+                <p>Precio: {{prod.precio}} </p>
+                <p>Categoria: {{prod.nombrecategoria}}</p>
+                <p> Estado: {{prod.estado}}</p>
+            </div>
+            <footer class="blockquote-footer ">
+                <small>
+                    <cite title="Source Title">Tags: {{prod.palabras}}</cite>
+                </small>
+            </footer>
+        </blockquote>
+    </div>
+</div>

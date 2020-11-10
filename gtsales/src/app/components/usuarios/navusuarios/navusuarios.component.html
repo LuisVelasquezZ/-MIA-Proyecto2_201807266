@@ -1,31 +1,38 @@
 <nav class="navbar navbar-dark bg-dark">
     <a class="navbar-brand" href="#">GT SALES</a>
-    <ul class="nav">
-        <li class="nav-item">
-            <a href="#" [routerLink]="['/usuarios/perfil']"
-                class="nav-link bg-dark text-light ">
-                Perfil
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    <div class="collapse navbar-collapse"  id="navbarSupportedContent">
+        <ul class="nav">
+            <li class="nav-item">
+                <a href="#" [routerLink]="['/usuarios/perfil']" class="nav-link bg-dark text-light ">
+                    Perfil
 
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="#" [routerLink]="['/usuarios/perfil']"
-                class="nav-link bg-dark text-light ">
-                Productos
-            </a>
-        </li>
-        <li class="nav-item">
-            <a href="#" [routerLink]="['/usuarios/perfil']"
-                class="nav-link bg-dark text-light">
-                Chats
-            </a>
-        </li>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" [routerLink]="['/usuarios/misproductos']" class="nav-link bg-dark text-light ">
+                    Productos
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" [routerLink]="['/usuarios/comprar']" class="nav-link bg-dark text-light ">
+                    Comprar
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="#" [routerLink]="['/usuarios/perfil']" class="nav-link bg-dark text-light">
+                    Chats
+                </a>
+            </li>
 
-    </ul>
+            <form class="form-inline">
+                <button class="btn btn-outline-light mr-sm-2" routerLink="/login">Cerrar Sesión</button>
+            </form>
+
+        </ul>
+    </div>
 
 
-
-    <form class="form-inline">
-        <button class="btn btn-outline-light mr-sm-2" routerLink="/login">Cerrar Sesión</button>
-    </form>
 </nav>

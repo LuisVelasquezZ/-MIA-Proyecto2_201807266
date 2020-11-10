@@ -1,0 +1,142 @@
+<h1 class="display-4  font-weight-bold">Comprar</h1>
+<div class="container">
+    <div class="row">
+        <button type="button" class="btn btn-outline-success" [routerLink]="['/usuarios/carrito']">Carrito</button>
+    </div>
+</div>
+
+<hr class="my-4">
+<div *ngIf="filtro; else elseBlock" class="row">
+    <form [formGroup]="compForm" class="form-inline" (ngSubmit)="filtrar()">
+        <div class="form-group">
+            <label for="idcategoria">Categorias</label>
+            <select class="form-control" id="idcategoria" formControlName="idcategoria">
+                <option *ngFor=" let p of categorias" value="{{p.idcategoria}}">{{p.nombrecategoria}}</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="idcategoria">Precio</label>
+            <select class="form-control" id="idcategoria" formControlName="orden">
+                <option value="asc">Ascendente</option>
+                <option value="desc">Descendente</option>
+            </select>
+        </div>
+        <div class="form-group justify-content-md-center">
+            <button type="submit" class="btn btn-outline-secondary">Filtrar
+                <i class="material-icons right">filter_alt</i>
+            </button>
+        </div>
+    </form>
+</div>
+<div class="row">
+    <ng-template #elseBlock>
+        <div class="row justify-content-md-center">
+            <button type="submit" (click)="quitarfiltro()" class="btn btn-outline-secondary">
+                <i class="material-icons right">clear</i>
+            </button>
+        </div>
+    </ng-template>
+
+</div>
+
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-striped  table-dark ">
+            <thead class="bg-info">
+                <tr>
+                    <th scope="col">Foto</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Categoria</th>
+                    <th scope="col">Tags</th>
+                    <th scope="col"></th>
+
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let prod of productos">
+                    <th scope="row">
+                        <div class="col-sm-3">
+                            <img  src="http://localhost:3000/{{prod.fotoproducto}}"
+                                class="img-fluid img-thumbnail" alt="...">
+                        </div>
+                    </th>
+                    <td>{{prod.nombreproducto}}</td>
+                    <td>{{prod.precio}}</td>
+                    <td>{{prod.nombrecategoria}}</td>
+                    <td>{{prod.palabras}}</td>
+                    <td>
+                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                            <button type="button" class="btn btn-outline-light" (click)="agregarcarrito(prod)"><i
+                                    class="material-icons ">add_shopping_cart</i></button>
+                            <button type="button" class="btn btn-outline-info" data-toggle="modal"
+                                data-target="#exampleModal" (click)="verdetalles(prod)"><i
+                                    class="material-icons right">speaker_notes</i></button>
+
+                        </div>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="card bg-light ">
+                    <img src="http://localhost:3000/{{produc.fotoproducto}}" class="card-img-top img-fluid" alt="...">
+                    <blockquote class="blockquote mb-0 card-body">
+                        <div class="card-body">
+                            <h5 class="card-title">{{produc.nombreproducto}} </h5>
+                            <p>{{produc.detalle}} </p>
+                            <p>Precio: {{produc.precio}} </p>
+                            <p>Categoria: {{produc.nombrecategoria}}</p>
+                        </div>
+                        <footer class="blockquote-footer ">
+                            <small>
+                                <cite title="Source Title">Tags: {{produc.palabras}}</cite>
+                            </small>
+                        </footer>
+                    </blockquote>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <div class="card card-body">
+                    <ul class="list-group list-group-flush">
+                      <li class="list-group-item" *ngFor="let comentario of comentarios">
+                          {{comentario.correo}}:
+                              <p> {{comentario.contenido}}</p>
+                              <footer class="blockquote-footer">{{comentario.fecha}}</footer>
+                            
+                         </li>
+                      <li class="list-group-item">
+                        <form [formGroup]="comentarioForm" (ngSubmit)="agregarComentario(produc.idproducto)">
+                          <div class="form-group">
+                            <label for="contenido">Comentario</label>
+                            <textarea class="form-control" placeholder="Agrega un comentario" id="contenido" rows="3" formControlName="contenido"></textarea>
+                          </div>
+                          <div class="row justify-content-md-center">
+                            <button type="submit" class="btn btn-outline-secondary">Comentar
+                              <i class="material-icons right">how_to_reg</i>
+                            </button>
+                          </div>
+                        </form>
+                      </li>
+                    </ul>
+                  </div>
+            </div>
+        </div>
+    </div>
+</div>

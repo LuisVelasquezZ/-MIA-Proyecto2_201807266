@@ -34,8 +34,14 @@ export class UsuarioService {
   }
 
   actualizarUsuario(usuario) {
-    console.log(usuario);
     return this.request('PUT', `${environment.serverUrl}/actualizarusuario`, usuario);
+  }
+  pagarUsuario(usuario) {
+    return this.request('PUT', `${environment.serverUrl}/pagousuario`, usuario);
+  }
+
+  cobrarUsuario(usuario) {
+    return this.request('PUT', `${environment.serverUrl}/cobrousuario`, usuario);
   }
 
   confirmarUsuario(usuario) {
@@ -51,7 +57,7 @@ export class UsuarioService {
     //hora :Date;
     uploadData.append('photo', selectedFile, hora+selectedFile.name);
     this.http.post(`${environment.serverUrl}/foto`, uploadData).subscribe((response) => {
-      console.log(response); // handle event here
+    // handle event here
     });
   }
 }
