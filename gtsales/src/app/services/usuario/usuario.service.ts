@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { ReporteService } from '../reporte/reporte.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private reporteService:ReporteService) { }
 
   private async request(method: string, url: string, data?: any) {
     const result = this.http.request(method, url, {
@@ -34,6 +35,7 @@ export class UsuarioService {
   }
 
   actualizarUsuario(usuario) {
+    this.reporteService.agregarBitacora("Realizo cambios").then(()=>{});
     return this.request('PUT', `${environment.serverUrl}/actualizarusuario`, usuario);
   }
   pagarUsuario(usuario) {

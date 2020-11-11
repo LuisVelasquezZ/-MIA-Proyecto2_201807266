@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import {  environment } from '../../../environments/environment';
 import { from } from 'rxjs';
+import { ReporteService } from '../reporte/reporte.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LoginService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private reporteService:ReporteService) { }
 
   private async request(method: string, url: string, data?: any) {
     const result = this.http.request(method, url, {
@@ -39,5 +40,22 @@ export class LoginService {
 
   passusuario(usuario){
     return this.request('PUT', `${environment.serverUrl}/passusuario`, usuario);
+  }
+
+
+  agregarDenuncia(usuario) {
+    //console.log(usuario);
+    this.reporteService.agregarBitacora("Denunica Producto").then(()=>{});
+    return this.request('POST', `${environment.serverUrl}/agregarDenuncia`, usuario);
+  }
+
+  getDenuncias() {
+    //console.log(usuario);
+    return this.request('GET', `${environment.serverUrl}/getDenuncias`);
+  }
+
+  editardenuncia(denuncia) {
+    //console.log(usuario);
+    return this.request('PUT', `${environment.serverUrl}/editardenuncia`, denuncia);
   }
 }

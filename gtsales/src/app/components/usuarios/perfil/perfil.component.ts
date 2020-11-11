@@ -43,7 +43,7 @@ export class PerfilComponent implements OnInit {
       //console.log(response);
       this.usuario = response[0];
       this.fileName = this.usuario.foto;
-      this.rutaimg = 'http://localhost:3000/' + this.usuario.foto;
+      this.rutaimg = 'http://192.168.1.8:3000/' + this.usuario.foto;
       this.getPaises();
       this.perfilForm = this.fb.group({
         nombre: new FormControl(this.usuario.nombre, Validators.required),

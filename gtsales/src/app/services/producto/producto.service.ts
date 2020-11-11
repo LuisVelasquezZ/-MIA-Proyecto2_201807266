@@ -1,13 +1,14 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
+import { ReporteService } from '../reporte/reporte.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductoService {
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient, private reporteService:ReporteService) { }
   private async request(method: string, url: string, data?: any) {
     const result = this.http.request(method, url, {
       body: data,
@@ -33,6 +34,7 @@ export class ProductoService {
 
   agregarProducto(producto) {
     //console.log(usuario);
+    this.reporteService.agregarBitacora("Agrego Producto").then(()=>{});
     return this.request('POST', `${environment.serverUrl}/agregarproducto`, producto);
   }
 
@@ -55,10 +57,12 @@ export class ProductoService {
   }
 
   confirmarcarrito(idusuario){
+    this.reporteService.agregarBitacora("Confirmo Carrito").then(()=>{});
     return this.request('PUT', `${environment.serverUrl}/confirmarcarrito`, idusuario);
   }
 
   limpiarcarrito(idusuario){
+    this.reporteService.agregarBitacora("limpio Carrito").then(()=>{});
     return this.request('DELETE', `${environment.serverUrl}/limpiarcarrito/${idusuario}`);
   }
 
@@ -71,7 +75,13 @@ export class ProductoService {
   }
 
   agregarComentario(producto) {
+    this.reporteService.agregarBitacora("Comento Producto").then(()=>{});
     return this.request('POST', `${environment.serverUrl}/agregarComentario`, producto);
+  }
+
+  bloquearProd(producto) {
+    this.reporteService.agregarBitacora("Bloqueo producto").then(()=>{});
+    return this.request('PUT', `${environment.serverUrl}/bloquearproducto`, producto);
   }
 
 

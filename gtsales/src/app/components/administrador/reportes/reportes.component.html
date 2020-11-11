@@ -1,0 +1,197 @@
+<h1 class="display-4  font-weight-bold">Reportes</h1>
+
+
+<hr class="my-4">
+<h3 class="display-4  font-weight-bold">Bitacora</h3>
+
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-striped  table-dark ">
+            <thead class="bg-info">
+                <tr>
+                    <th scope="col">Contenido</th>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Usuario</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let bit of bitacoras">
+                    <td>{{bit.contenido}}</td>
+                    <td>{{bit.fecha}}</td>
+                    <td>{{bit.correo}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+<hr class="my-4">
+<p class="display-4  font-weight-bold">Los 10 productos más vendidos</p>
+
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-striped  table-dark ">
+            <thead class="bg-info">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Cantidad</th>
+                    <th scope="col">Producto</th>
+                    <th scope="col">Vendedor</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let r1 of rep1">
+                    <td>{{r1.idproducto}}</td>
+                    <td>{{r1.cant}}</td>
+                    <td>{{r1.nombreproducto}}</td>
+                    <td>{{r1.nombre}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+<hr class="my-4">
+<p class="display-4  font-weight-bold">Clientes con más creditos</p>
+
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-striped  table-dark ">
+            <thead class="bg-info">
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Creditos</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let r4a of rep4a">
+                    <td>{{r4a.nombre}}</td>
+                    <td>{{r4a.correo}}</td>
+                    <td>{{r4a.creditos}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<hr class="my-4">
+<p class="display-4  font-weight-bold">Clientes con menos creditos</p>
+
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-striped  table-dark ">
+            <thead class="bg-info">
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Creditos</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let r4b of rep4b">
+                    <td>{{r4b.nombre}}</td>
+                    <td>{{r4b.correo}}</td>
+                    <td>{{r4b.creditos}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<hr class="my-4">
+<p class="display-4  font-weight-bold">Clientes que más denuncian</p>
+
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-striped  table-dark ">
+            <thead class="bg-info">
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Denuncias</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let r5 of rep5">
+                    <td>{{r5.nombre}}</td>
+                    <td>{{r5.correo}}</td>
+                    <td>{{r5.cant}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<hr class="my-4">
+<p class="display-4  font-weight-bold">Clientes que más publican</p>
+
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-striped  table-dark ">
+            <thead class="bg-info">
+                <tr>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Correo</th>
+                    <th scope="col">Publicaciones</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let r6 of rep6">
+                    <td>{{r6.nombre}}</td>
+                    <td>{{r6.correo}}</td>
+                    <td>{{r6.cant}}</td>
+
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>
+
+
+<hr class="my-4">
+<p class="display-4  font-weight-bold">Paises con mas creditos, clientes y productos</p>
+
+<div class="row">
+    <div class="table-responsive">
+        <table class="table table-striped  table-dark ">
+            <thead class="bg-info">
+                <tr>
+                    <th scope="col">País</th>
+                    <th scope="col">Creditos</th>
+                    <th scope="col">Usuarios</th>
+                    <th scope="col">Productos</th>
+                    
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let r7 of rep7">
+                    <td>{{r7.pais}}</td>
+                    <td>{{r7.creditos}}</td>
+                    <td>{{r7.usuarios}}</td>
+                    <td>{{r7.productos}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+</div>

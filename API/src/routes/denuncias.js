@@ -7,7 +7,9 @@ const BD = require('../config/db');
 
 //READ
 router.get('/getDenuncias', async (req, res) => {
-    sql = "select * from denuncia where estado = 'revisar";
+    sql = "select iddenuncia, contenido, denuncia.estado, denuncia.idusuario, denuncia.idproducto, producto.nombreproducto, fecha\
+    from denuncia  inner join producto on denuncia.idproducto = producto.idproducto\
+     where denuncia.estado = 'revisar'";
 
     let result = await BD.Open(sql, [], false);
 
@@ -21,7 +23,8 @@ router.get('/getDenuncias', async (req, res) => {
             "estado": prod[2],
             "idusuario": prod[3],
             "idproducto": prod[4],
-            "fecha": prod[5]            
+            "nombreproducto": prod[5],
+            "fecha": prod[6]
         }
 
         Prods.push(prodSchema);
@@ -33,17 +36,17 @@ router.get('/getDenuncias', async (req, res) => {
 //CREATE
 
 router.post('/agregarDenuncia', async (req, res) => {
-    const { contenido,idusuario, idproducto} = req.body;
+    const { contenido, idusuario, idproducto } = req.body;
     sql = "insert into denuncia(contenido,idusuario,idproducto)\
      values(:contenido,:idusuario,:idproducto)";
 
-    await BD.Open(sql, [ contenido,idusuario,idproducto], true);
+    await BD.Open(sql, [contenido, idusuario, idproducto], true);
 
     res.status(200).json({
-            "contenido":contenido,
-            "idusuario": idusuario,
-            "idproducto": idproducto
-        })
+        "contenido": contenido,
+        "idusuario": idusuario,
+        "idproducto": idproducto
+    })
 })
 
 router.put("/editardenuncia", async (req, res) => {
@@ -56,6 +59,47 @@ router.put("/editardenuncia", async (req, res) => {
         "iddenuncia": iddenuncia
     })
 
+})
+
+
+//READ
+router.get('/getBitacora', async (req, res) => {
+    sql = "select idbitacora, contenido,fecha, bitacora.idusuario, usuario.correo\
+    from bitacora  inner join usuario on bitacora.idusuario = usuario.idusuario";
+
+    let result = await BD.Open(sql, [], false);
+
+    //console.log(result);
+    Prods = [];
+
+    result.rows.map(prod => {
+        let prodSchema = {
+            "idbitacora": prod[0],
+            "contenido": prod[1],
+            "fecha": prod[2],
+            "idusuario": prod[3],
+            "correo": prod[4]
+        }
+
+        Prods.push(prodSchema);
+    })
+
+    res.json(Prods);
+})
+
+//CREATE
+
+router.post('/agregarBitacora', async (req, res) => {
+    const { contenido, idusuario } = req.body;
+    sql = "insert into bitacora(contenido,idusuario)\
+     values(:contenido,:idusuario)";
+
+    await BD.Open(sql, [contenido, idusuario], true);
+
+    res.status(200).json({
+        "contenido": contenido,
+        "idusuario": idusuario
+    })
 })
 
 module.exports = router;

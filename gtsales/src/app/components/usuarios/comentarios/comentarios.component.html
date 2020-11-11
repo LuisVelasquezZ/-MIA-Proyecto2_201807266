@@ -25,7 +25,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let prod of productos">
-                    <th scope="row" ><img style="max-width: 25%;" src="http://localhost:3000/{{prod.fotoproducto}}" class="img-fluid img-thumbnail"
+                    <th scope="row" ><img style="max-width: 25%;" src="http://192.168.1.8:3000/{{prod.fotoproducto}}" class="img-fluid img-thumbnail"
                             alt="..."></th>
                     <td>{{prod.nombreproducto}}</td>
                     <td>{{prod.precio}}</td>
@@ -59,7 +59,7 @@
         </div>
         <div class="modal-body">
             <div class="card bg-light " >
-                <img src="http://localhost:3000/{{produc.fotoproducto}}" class="card-img-top img-fluid" alt="...">
+                <img src="http://192.168.1.8:3000/{{produc.fotoproducto}}" class="card-img-top img-fluid" alt="...">
                 <blockquote class="blockquote mb-0 card-body">
                     <div class="card-body">
                         <h5 class="card-title">{{produc.nombreproducto}} </h5>

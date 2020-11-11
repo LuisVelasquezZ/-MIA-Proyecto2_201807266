@@ -20,6 +20,8 @@ import { ProductosComponent } from './components/usuarios/productos/productos.co
 import { ComparComponent } from './components/usuarios/compar/compar.component';
 import { ComentariosComponent } from './components/usuarios/comentarios/comentarios.component';
 import { DenunciaComponent } from './components/usuarios/denuncia/denuncia.component';
+import { DenunciadasComponent } from './components/administrador/denunciadas/denunciadas.component';
+import { ReportesComponent } from './components/administrador/reportes/reportes.component';
 
 @NgModule({
   declarations: [
@@ -36,7 +38,9 @@ import { DenunciaComponent } from './components/usuarios/denuncia/denuncia.compo
     ProductosComponent,
     ComparComponent,
     ComentariosComponent,
-    DenunciaComponent
+    DenunciaComponent,
+    DenunciadasComponent,
+    ReportesComponent
   ],
   imports: [
     BrowserModule,

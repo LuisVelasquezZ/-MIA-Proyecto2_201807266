@@ -10,6 +10,8 @@ const categorias = require('./routes/categorias');
 const productos = require('./routes/productos');
 const carrito = require('./routes/carrito');
 const comentarios = require('./routes/comentarios');
+const denuncias = require('./routes/denuncias');
+const reportes = require('./routes/reportes');
 
 //settings
 app.set('port', 3000);
@@ -26,6 +28,8 @@ app.use(categorias);
 app.use(productos);
 app.use(carrito);
 app.use(comentarios);
+app.use(denuncias);
+app.use(reportes);
 
 app.use(express.static('src/img'));
 

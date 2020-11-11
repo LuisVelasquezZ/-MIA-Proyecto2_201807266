@@ -1,1 +1,20 @@
-<p>denuncia works!</p>
+<h1 class="display-4  font-weight-bold">Denunciar</h1>
+<div class="container">
+    <hr class="my-4">
+    <div class="row">
+      <div class="col-8">
+        <form [formGroup]="denunciaForm" (ngSubmit)="agregarDenuncia()">
+          <div class="form-group">
+            <label for="detalle">Contenido</label>
+            <textarea class="form-control" id="deetalle" rows="3" formControlName="contenido"></textarea>
+          </div>
+          <div class="row justify-content-md-center">
+            <button type="submit" class="btn btn-outline-secondary">Guardar
+              <i class="material-icons right">how_to_reg</i>
+            </button>
+          </div>
+        </form>
+      </div>
+    
+    </div>
+</div>

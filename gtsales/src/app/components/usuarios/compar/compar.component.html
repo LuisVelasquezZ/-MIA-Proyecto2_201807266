@@ -50,6 +50,7 @@
                     <th scope="col">Categoria</th>
                     <th scope="col">Tags</th>
                     <th scope="col"></th>
+                    <th scope="col"></th>
 
                 </tr>
             </thead>
@@ -57,7 +58,7 @@
                 <tr *ngFor="let prod of productos">
                     <th scope="row">
                         <div class="col-sm-3">
-                            <img  src="http://localhost:3000/{{prod.fotoproducto}}"
+                            <img  src="http://192.168.1.8:3000/{{prod.fotoproducto}}"
                                 class="img-fluid img-thumbnail" alt="...">
                         </div>
                     </th>
@@ -75,6 +76,9 @@
 
                         </div>
                     </td>
+                    <td>
+                        <button type="button" class="btn btn-outline-warning"  [routerLink]="['/usuarios/denuncia', prod.idproducto]">Denunciar</button>
+                      </td>
 
                 </tr>
             </tbody>
@@ -96,7 +100,7 @@
             </div>
             <div class="modal-body">
                 <div class="card bg-light ">
-                    <img src="http://localhost:3000/{{produc.fotoproducto}}" class="card-img-top img-fluid" alt="...">
+                    <img src="http://192.168.1.8:3000/{{produc.fotoproducto}}" class="card-img-top img-fluid" alt="...">
                     <blockquote class="blockquote mb-0 card-body">
                         <div class="card-body">
                             <h5 class="card-title">{{produc.nombreproducto}} </h5>
